@@ -2,18 +2,16 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
-    unsigned char   ch;
+	int	i;
 
-	ch = (unsigned char)c;
+	if ((unsigned char)c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
 	i = 0;
-    while (s[i] != '\0')
+	while (s[i] != (unsigned char)c)
 	{
-		if (s[i] == ch)
-			return ((char *)&s[i]);
+		if (s[i] == '\0')
+			return (NULL);
 		i++;
 	}
-    if (ch == '\0')
-	    return ((char *)&s[i]);
-    return (NULL);
+	return ((char *)s + i);
 }
