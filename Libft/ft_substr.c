@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ndemkiv <ndemkiv@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 11:29:23 by ndemkiv           #+#    #+#             */
+/*   Updated: 2025/09/30 11:29:23 by ndemkiv          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -26,7 +38,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub = (char *)malloc(sub_len + 1);
 	if (!sub)
 		return (NULL);
-        
+
 	ft_memcpy(sub, s + st, sub_len);
 	sub[sub_len] = '\0';
 	return (sub);

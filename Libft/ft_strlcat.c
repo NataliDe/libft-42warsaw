@@ -6,32 +6,36 @@
 /*   By: ndemkiv <ndemkiv@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 12:58:28 by ndemkiv           #+#    #+#             */
-/*   Updated: 2025/09/29 13:49:35 by ndemkiv          ###   ########.fr       */
+/*   Updated: 2025/09/30 17:00:19 by ndemkiv          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "libft.h"
 
-size_t	strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	dst_len;
-	size_t	src_len;
+	size_t	j;
+	size_t	res_d;
+	size_t	res_s;
 
-	dst_len = 0;
-	while (dst_len < size && dst[dst_len])
-		dst_len++;
-	src_len = 0;
-	while (src[src_len] != '\0')
-		src_len++;
-	if (dst_len == size)
-		return (size + src_len);
-	i = 0;
-	while (src[i] != '\0' && (dst_len + i + 1) < size)
+	i = ft_strlen(dst);
+	j = 0;
+	res_d = ft_strlen(dst);
+	res_s = ft_strlen(src);
+	if (dstsize < 1)
+		return (res_s + dstsize);
+	while (src[j] && i < dstsize - 1)
 	{
-		dst[dst_len + i] = src[i];
+		dst[i] = src[j];
 		i++;
+		j++;
 	}
-	dst[dst_len + i] = '\0';
-	return (dst_len + src_len);
+	dst[i] = '\0';
+	if (dstsize < res_d)
+		return (res_s + dstsize);
+	else
+		return (res_d + res_s);
 }
+

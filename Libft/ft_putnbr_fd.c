@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ndemkiv <ndemkiv@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 11:23:56 by ndemkiv           #+#    #+#             */
+/*   Updated: 2025/09/30 11:23:56 by ndemkiv          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <unistd.h>
 
 static void	putnbr_long(long nb, int fd)
 {
-	char c;
+	char	c;
 
 	if (nb >= 10)
 		putnbr_long(nb / 10, fd);
@@ -13,7 +24,7 @@ static void	putnbr_long(long nb, int fd)
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	long nb;
+	long	nb;
 
 	if (fd < 0)
 		return ;
@@ -25,3 +36,4 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	putnbr_long(nb, fd);
 }
+

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ndemkiv <ndemkiv@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 11:24:47 by ndemkiv           #+#    #+#             */
+/*   Updated: 2025/09/30 11:24:47 by ndemkiv          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static size_t	wordcount(char const *s, char c)
@@ -36,7 +48,9 @@ static char	*getword(char const *s, char c)
 
 static void	*free_partial(char **arr, size_t n)
 {
-	size_t i = 0;
+	size_t	i;
+
+	i = 0;
 
 	while (i < n)
 	{
