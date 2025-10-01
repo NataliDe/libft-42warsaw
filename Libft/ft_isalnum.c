@@ -13,12 +13,7 @@
 #include "libft.h"
 
 int	ft_isalnum(int c)
-
-	{
-	int	ft_isalpha;
-	int	ft_isnum;
-
-	ft_isalpha = ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
-	ft_isnum = (c >= '0' && c <= '9');
-	return (ft_isalpha || ft_isnum);
+{
+	return (ft_isalpha(c) || ft_isdigit(c));
 }
+
