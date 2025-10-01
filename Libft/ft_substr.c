@@ -14,32 +14,33 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	size_t	i;
 	size_t	s_len;
-	size_t	st;
-	size_t	sub_len;
 	char	*sub;
 
 	if (!s)
 		return (NULL);
-	s_len = ft_strlen(s);
-	st = (size_t)start;
-	if (st >= s_len)
-	{
-		sub = (char *)malloc(1);
-		if (!sub)
-			return (NULL);
-		sub[0] = '\0';
-		return (sub);
-	}
-	sub_len = s_len - st;
-	if (sub_len > len)
-		sub_len = len;
 
-	sub = (char *)malloc(sub_len + 1);
+	s_len = ft_strlen(s);
+	if (start >= s_len) // якщо початок за межами рядка
+		return (ft_strdup("")); // повертаємо пустий рядок
+
+	// обмежуємо довжину, щоб не вийти за межі
+	if (len > s_len - start)
+		len = s_len - start;
+
+	sub = (char *)malloc(sizeof(char) * (len + 1));
 	if (!sub)
 		return (NULL);
 
-	ft_memcpy(sub, s + st, sub_len);
-	sub[sub_len] = '\0';
+	i = 0;
+	while (i < len && s[start + i])
+	{
+		sub[i] = s[start + i];
+		i++;
+	}
+	sub[i] = '\0';
+
 	return (sub);
 }
+
