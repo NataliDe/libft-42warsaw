@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stddef.h>
 /*# include <stdint.h>*/
 /*# include "GNL/get_next_line_bonus.h"*/
 /*# include "ft_printf/ft_printf.h"*/
@@ -71,3 +72,4 @@ void	ft_putnbr_fd(int n, int fd);
 //t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif
+
