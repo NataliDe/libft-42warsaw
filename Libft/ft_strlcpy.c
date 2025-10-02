@@ -6,11 +6,10 @@
 /*   By: ndemkiv <ndemkiv@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 12:39:54 by ndemkiv           #+#    #+#             */
-/*   Updated: 2025/09/30 17:22:05 by ndemkiv          ###   ########.fr       */
+/*   Updated: 2025/10/02 17:11:17 by ndemkiv          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)

@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndemkiv <ndemkiv@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 11:09:06 by ndemkiv           #+#    #+#             */
-/*   Updated: 2025/09/30 11:09:06 by ndemkiv          ###   ########.fr       */
+/*   Created: 2025/09/30 11:23:56 by ndemkiv           #+#    #+#             */
+/*   Updated: 2025/09/30 11:23:56 by ndemkiv          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+static void	putnbr_long(long nb, int fd)
 {
-	int		sign;
-	long	result;
+	char	c;
 
-	result = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '+' || *str == '-')
+	if (nb >= 10)
+		putnbr_long(nb / 10, fd);
+	c = (char)('0' + (nb % 10));
+	write(fd, &c, 1);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	nb;
+
+	if (fd < 0)
+		return ;
+	nb = (long)n;
+	if (nb < 0)
 	{
-		if (*str == '-')
-			sign = sign * -1;
-		str++;
+		write(fd, "-", 1);
+		nb = -nb;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		result = (result * 10) + *str - '0';
-		str++;
-	}
-	return ((int)(result * sign));
+	putnbr_long(nb, fd);
 }

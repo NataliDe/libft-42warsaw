@@ -6,7 +6,7 @@
 /*   By: ndemkiv <ndemkiv@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 12:58:28 by ndemkiv           #+#    #+#             */
-/*   Updated: 2025/09/30 17:00:19 by ndemkiv          ###   ########.fr       */
+/*   Updated: 2025/10/02 13:07:56 by ndemkiv          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		dst[dlen + i] = '\0';
 	return (dlen + slen);
 }
-
