@@ -19,11 +19,11 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	if (!dst && !src)
 		return (NULL);
-	if (src == dst)
+	if (src == dst || len == 0)
 		return (dst);
 	d = (unsigned char *)dst;
 	s = (const unsigned char *)src;
-	if (s < d && s + len > d)
+	if (d > s)
 		while (len--)
 			d[len] = s[len];
 	else
