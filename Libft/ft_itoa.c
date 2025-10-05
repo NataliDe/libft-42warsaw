@@ -44,12 +44,14 @@ char	*ft_itoa(int n)
 		s[0] = '-';
 		nb = -nb;
 	}
-	while (len-- > 0 && nb >= 0)
+	if (nb == 0)
+		s[--len] = '0';
+
+	while (nb > 0)
 	{
-		s[len] = (char)('0' + (nb % 10));
+		s[--len] = (char)('0' + (nb % 10));
 		nb /= 10;
-		if (nb == 0)
-			break ;
 	}
 	return (s);
 }
+
