@@ -62,7 +62,18 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	res = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (c == '\0')
+	{
+		res = (char **)malloc(2 * sizeof(char *));
+		if (!res)
+			return (NULL);
+		res[0] = ft_strdup(s);
+		if (!res[0])
+			return (free(res), NULL);
+		res[1] = NULL;
+		return (res);
+	}
+	res = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
 	i = 0;
@@ -80,5 +91,3 @@ char	**ft_split(char const *s, char c)
 	res[i] = NULL;
 	return (res);
 }
-
-
