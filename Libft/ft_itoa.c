@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-
 static size_t	ft_intlen(int n)
 {
 	size_t		len;
@@ -54,5 +53,6 @@ char	*ft_itoa(int n)
 	}
 	return (s);
 }
+
 
 
