@@ -6,7 +6,7 @@
 /*   By: ndemkiv <ndemkiv@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:56:06 by ndemkiv           #+#    #+#             */
-/*   Updated: 2025/10/02 13:02:23 by ndemkiv          ###   ########.fr       */
+/*   Updated: 2025/10/06 13:59:44 by ndemkiv          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	if (!dst && !src)
 		return (NULL);
-	if (src == dst || len == 0)
+	if (src == dst)
 		return (dst);
 	d = (unsigned char *)dst;
 	s = (const unsigned char *)src;
-	if (d > s)
+	if (s < d && s + len > d)
 		while (len--)
 			d[len] = s[len];
 	else

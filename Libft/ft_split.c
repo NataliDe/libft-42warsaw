@@ -12,82 +12,83 @@
 
 #include "libft.h"
 
-static size_t	ft_count_words(char const *s, char c)
+static size_t	wordcount(char const *s, char c)
 {
-	size_t	i;
 	size_t	count;
 
-	i = 0;
 	count = 0;
-	while (s[i] != '\0')
+	while (*s)
 	{
-		while (s[i] == c && s[i] != '\0')
-			i++;
-		if (s[i] != '\0')
+		while (*s && *s == c)
+			++s;
+		if (*s && *s != c)
 		{
-			count++;
-			while (s[i] != c && s[i] != '\0')
-				i++;
+			++count;
+			while (*s && *s != c)
+				++s;
 		}
 	}
 	return (count);
 }
 
-static char	*dup_word(char const *s, char c)
+static char	*getword(char const *s, char c)
 {
-	size_t	len;
-	char	*word;
+	size_t	i;
+	char	*str;
 
-	len = 0;
-	while (s[len] && s[len] != c)
-		len++;
-	word = (char *)malloc(len + 1);
-	if (!word)
+	i = 0;
+	while (s[i] && s[i] != c)
+		++i;
+	str = (char *)malloc(i + 1);
+	if (!str)
 		return (NULL);
-	ft_strlcpy(word, s, len + 1);
-	return (word);
+	ft_strlcpy(str, s, i + 1);
+	return (str);
 }
 
-static void	free_split(char **arr, size_t i)
+static void	*free_partial(char **arr, size_t n)
 {
-	while (i > 0)
-		free(arr[--i]);
+	size_t	i;
+
+	i = 0;
+
+	while (i < n)
+	{
+		free(arr[i]);
+		++i;
+	}
 	free(arr);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**res;
+	char	**split;
 	size_t	i;
+	size_t	k;
+	size_t	wc;
 
 	if (!s)
 		return (NULL);
-	if (c == '\0')
-	{
-		res = (char **)malloc(2 * sizeof(char *));
-		if (!res)
-			return (NULL);
-		res[0] = ft_strdup(s);
-		if (!res[0])
-			return (free(res), NULL);
-		res[1] = NULL;
-		return (res);
-	}
-	res = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
-	if (!res)
+	wc = wordcount(s, c);
+	split = (char **)malloc((wc + 1) * sizeof(char *));
+	if (!split)
 		return (NULL);
 	i = 0;
-	while (*s)
+	k = 0;
+	while (s[i])
 	{
-		while (*s && *s == c)
-			s++;
-		if (!*s)
+		while (s[i] && s[i] == c)
+			++i;
+		if (!s[i])
 			break ;
-		res[i] = dup_word(s, c);
-		if (!res[i])
-			return (free_split(res, i), NULL);
-		s += ft_strlen(res[i++]);
+		split[k] = getword(s + i, c);
+		if (!split[k])
+			return (free_partial(split, k));
+		while (s[i] && s[i] != c)
+			++i;
+		++k;
 	}
-	res[i] = NULL;
-	return (res);
+	split[k] = NULL;
+	return (split);
 }

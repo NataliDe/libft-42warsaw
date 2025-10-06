@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-static size_t	ft_intlen(int n)
+static size_t	int_len(int n)
 {
 	size_t		len;
 	long long	nb;
 
 	nb = (long long)n;
 	len = (nb <= 0);
-	while (nb)
+	while (nb != 0)
 	{
 		len++;
 		nb /= 10;
@@ -29,11 +29,11 @@ static size_t	ft_intlen(int n)
 
 char	*ft_itoa(int n)
 {
-	char		*s;
 	size_t		len;
+	char		*s;
 	long long	nb;
 
-	len = ft_intlen(n);
+	len = int_len(n);
 	s = (char *)malloc(len + 1);
 	if (!s)
 		return (NULL);
@@ -44,15 +44,12 @@ char	*ft_itoa(int n)
 		s[0] = '-';
 		nb = -nb;
 	}
-	if (nb == 0)
-		s[--len] = '0';
-	while (nb > 0)
+	while (len-- > 0 && nb >= 0)
 	{
-		s[--len] = (nb % 10) + '0';
+		s[len] = (char)('0' + (nb % 10));
 		nb /= 10;
+		if (nb == 0)
+			break ;
 	}
 	return (s);
 }
-
-
-

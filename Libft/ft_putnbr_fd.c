@@ -36,4 +36,3 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	putnbr_long(nb, fd);
 }
-
