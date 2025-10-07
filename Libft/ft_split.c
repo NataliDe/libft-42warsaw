@@ -51,7 +51,6 @@ static void	*free_partial(char **arr, size_t n)
 	size_t	i;
 
 	i = 0;
-
 	while (i < n)
 	{
 		free(arr[i]);
@@ -61,33 +60,40 @@ static void	*free_partial(char **arr, size_t n)
 	return (NULL);
 }
 
+static size_t	skip_char(char const *s, char c, size_t i, int negated)
+{
+	if (negated)
+		while (s[i] && s[i] != c)
+			i++;
+	else
+		while (s[i] && s[i] == c)
+			i++;
+	return (i);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	size_t	i;
 	size_t	k;
-	size_t	wc;
 
 	if (!s)
 		return (NULL);
-	wc = wordcount(s, c);
-	split = (char **)malloc((wc + 1) * sizeof(char *));
+	split = (char **)malloc((wordcount(s, c) + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
 	i = 0;
 	k = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i] == c)
-			++i;
+		i = skip_char(s, c, i, 0);
 		if (!s[i])
 			break ;
 		split[k] = getword(s + i, c);
 		if (!split[k])
 			return (free_partial(split, k));
-		while (s[i] && s[i] != c)
-			++i;
-		++k;
+		i = skip_char(s, c, i, 1);
+		k++;
 	}
 	split[k] = NULL;
 	return (split);
