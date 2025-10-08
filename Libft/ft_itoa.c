@@ -14,8 +14,8 @@
 
 static size_t	int_len(int n)
 {
-	long long	nb;
 	size_t		len;
+	long long	nb;
 
 	nb = (long long)n;
 	len = (nb <= 0);
@@ -29,9 +29,9 @@ static size_t	int_len(int n)
 
 char	*ft_itoa(int n)
 {
-	long long	nb;
 	size_t		len;
 	char		*s;
+	long long	nb;
 
 	len = int_len(n);
 	s = (char *)malloc(len + 1);
@@ -39,17 +39,17 @@ char	*ft_itoa(int n)
 		return (NULL);
 	s[len] = '\0';
 	nb = (long long)n;
-	if (nb == 0)
-		s[0] = '0';
 	if (nb < 0)
 	{
 		s[0] = '-';
 		nb = -nb;
 	}
-	while (nb > 0)
+	while (len-- > 0 && nb >= 0)
 	{
-		s[--len] = (char)('0' + (nb % 10));
+		s[len] = (char)('0' + (nb % 10));
 		nb /= 10;
+		if (nb == 0)
+			break ;
 	}
 	return (s);
 }
