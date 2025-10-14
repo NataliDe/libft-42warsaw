@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sandrzej <sandrzej@student.42warsaw.p      +#+  +:+       +#+        */
+/*   By: ndemkiv <ndemkiv@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:20:07 by ndemkiv          #+#    #+#             */
 /*   Updated: 2025/10/07 18:18:23 by ndemkiv         ###   ########.fr       */
